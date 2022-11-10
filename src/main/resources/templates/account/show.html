@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+</head>
+<body>
+<p id="accNumber" th:text="'Номер счета: ' + ${account.getAccNumber()}">VALUE</p>
+<p id="currency" th:text="'Валюта: ' + ${account.getCur()}">VALUE</p>
+<p id="balance" th:text="'Остаток: ' + ${account.getBalance()}">VALUE</p>
+<p id="dOpen" th:text="'Дата открытия: ' + ${account.dOpen2String()}">VALUE</p>
+<p id="dClose" th:text="'Дата закрытия: ' + ${account.dClose2String()}">VALUE</p>
+
+<br/>
+
+<form th:action="@{/account/{id}/edit(id=${account.getId()})}" th:method="GET">
+    <input type="submit" value="Редактировать счет"/>
+</form>
+
+<br/>
+
+<form th:action="@{/account/{id}(id=${account.getId()})}" th:method="DELETE">
+    <input name="clientId" th:value="${account.getClient().getId()}" type="hidden"/>
+
+    <input type="submit" value="Удалить Счет"/>
+</form>
+
+<hr>
+<br/>
+
+<form th:action="@{/account/{id}/credit(id=${account.getId()})}" th:method="GET">
+    <input type="submit" value="Пополнить"/>
+</form>
+
+<br/>
+
+<form th:action="@{/account/{id}/debit(id=${account.getId()})}" th:method="GET">
+    <input type="submit" value="Списать"/>
+</form>
+
+</body>
+</html>

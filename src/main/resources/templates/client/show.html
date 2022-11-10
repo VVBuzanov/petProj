@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Client</title>
+</head>
+<body>
+
+<p id="id" th:text="'УИД: ' + ${client.getId()}">VALUE</p>
+<p id="fio" th:text="'ФИО: ' + ${client.getFio()}">VALUE</p>
+<p id="dbay" th:text="'Дата рождения: ' + ${client.bday2String()}">VALUE</p>
+
+<br/>
+
+<form th:action="@{/client/{id}/edit(id=${client.getId()})}" th:method="GET">
+    <input type="submit" value="Редактировать клиента"/>
+</form>
+
+<br/>
+
+<form th:action="@{/client/{id}(id=${client.getId()})}" th:method="DELETE">
+    <input type="submit" value="Удалить Клиента"/>
+</form>
+
+<br/>
+<hr>
+
+<h3>Счета клиента:</h3>
+
+<form th:action="@{/account/new}" th:method="GET">
+    <input name="Id" th:value="${client.Id}" type="hidden"/>
+
+    <input type="submit" value="Добавить счет"/>
+</form>
+
+<br/>
+
+<table>
+    <thead>
+    <tr>
+        <th> Счет</th>
+        <th> Валюта</th>
+        <th> Дата открытия</th>
+        <th> Дата закрытия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${accounts.empty}">
+        <td colspan="2"> Счета отсутствуют</td>
+    </tr>
+    <tr th:each="account : ${accounts}">
+        <td><span> <a th:href="@{/account/{id}(id=${account.getId()})}" th:text="${account.getAccNumber()}">Account</a></span>
+        </td>
+        <td><span th:text="${account.getCur()}">Currency</span></td>
+        <td><span th:text="${account.dOpen2String()}">dOpen</span></td>
+        <td><span th:text="${account.dClose2String()}">dClose</span></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

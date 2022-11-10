@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Clients</title>
+</head>
+<body>
+<h3>Список Клиентов:</h3>
+
+<br>
+<br>
+
+<table>
+    <thead>
+    <tr>
+        <th> УИД</th>
+        <th> ФИО</th>
+        <th> Дата рождения</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${clients.empty}">
+        <td colspan="2"> Клиенты отсутствуют</td>
+    </tr>
+    <tr th:each="client : ${clients}">
+        <td><span th:text="${client.getId()}"> УИД </span></td>
+        <td><span> <a th:href="@{/client/{id}(id=${client.getId()})}" th:text="${client.getFio()}">> ФИО </a></span>
+        </td>
+        <td><span th:text="${client.bday2String()}"> Дата рождения </span></td>
+    </tr>
+    </tbody>
+</table>
+
+<hr>
+
+<a href="/client/new">Добавить клиента</a>
+
+</body>
+</html>

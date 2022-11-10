@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Account</title>
+</head>
+<body>
+
+<form th:action="@{/account/{id}(id=${account.getId()})}" th:method="PATCH" th:object="${account}">
+
+    <p th:text="'Номер счета: ' + ${account.getAccNumber()}">VALUE</p>
+
+    <input id="accNumber" th:field="${account.accNumber}" type="hidden"/>
+    <input id="Id" th:field="${account.Id}" type="hidden"/>
+    <input id="dateOpen" th:field="${account.dateOpen}" type="hidden"/>
+    <input id="cur" th:field="${account.cur}" type="hidden"/>
+
+    <label for="dateClose">Введите Дату закрытия: </label>
+    <input id="dateClose" th:field="*{dateClose}" type="text"/>
+    <div style="color:red" th:errors="*{dateClose}" th:if="${#fields.hasErrors('dateClose')}">dateClose Error</div>
+    <br/>
+
+    <input type="submit" value="Изменить"/>
+</form>
+
+
+</body>
+</html>

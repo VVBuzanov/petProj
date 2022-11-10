@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Debit</title>
+</head>
+<body>
+
+<form th:action="@{/account/{id}/debit(id=${ledger.getAccId()})}" th:method="POST" th:object="${ledger}">
+
+    <label for="sumDebit">Введите сумму списания: </label>
+    <input id="sumDebit" min="0" placeholder="1.0" required step="0.01" th:field="*{sumDebit}" type="number"/>
+    <div style="color:red" th:errors="*{sumDebit}" th:if="${#fields.hasErrors('sumDebit')}">Fio Error</div>
+    <br/>
+    <input type="submit" value="Провести"/>
+</form>
+
+
+</body>
+</html>

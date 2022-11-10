@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Client</title>
+</head>
+<body>
+
+<form th:action="@{/client/{id}(id=${client.getId()})}" th:method="PATCH" th:object="${client}">
+
+    <label for="fio">Введите ФИО: </label>
+    <input id="fio" th:field="*{fio}" type="text"/>
+    <div style="color:red" th:errors="*{fio}" th:if="${#fields.hasErrors('fio')}">Fio Error</div>
+    <br/>
+
+    <label for="birthday">Введите дату рождения: </label>
+    <input id="birthday" th:field="*{birthday}" type="text"/>
+    <div style="color:red" th:errors="*{birthday}" th:if="${#fields.hasErrors('birthday')}">Birthday Error</div>
+    <br/>
+
+    <input type="submit" value="Изменить"/>
+</form>
+
+</body>
+</html>

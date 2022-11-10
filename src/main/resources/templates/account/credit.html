@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Credit</title>
+</head>
+<body>
+
+<form th:action="@{/account/{id}/credit(id=${accId})}" th:method="POST">
+
+    <label for="summa">Введите сумму пополнения: </label>
+    <input id="summa" min="0" name="summa" placeholder="1.0" required step="0.01" th:value="*{summa}" type="number"/>
+
+    <input type="submit" value="Провести"/>
+</form>
+
+</body>
+</html>

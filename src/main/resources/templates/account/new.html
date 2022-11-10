@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Account</title>
+</head>
+<body>
+<h3>Добавление нового счета:</h3>
+
+<form th:action="@{/account}" th:method="POST" th:object="${account}">
+
+    <label for="accNumber">Введите номер счета: </label>
+    <input id="accNumber" th:field="*{accNumber}" type="text"/>
+    <div style="color:red" th:errors="*{accNumber}" th:if="${#fields.hasErrors('accNumber')}">accNumber Error</div>
+    <br/>
+
+    <label for="cur">Введите валюту: </label>
+    <input id="cur" th:field="*{cur}" type="text"/>
+    <div style="color:red" th:errors="*{cur}" th:if="${#fields.hasErrors('cur')}">Cur Error</div>
+    <br/>
+
+    <br/>
+
+    <input name="Id" th:value="${client.Id}" type="hidden"/>
+
+    <input type="submit" value="Создать"/>
+</form>
+
+</body>
+</html>
